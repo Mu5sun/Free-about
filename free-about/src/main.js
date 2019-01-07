@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import fastclick from 'fastclick'
 import './assets/stylus/index.styl'
+import 'lib-flexible'
 
 Vue.config.productionTip = false
 

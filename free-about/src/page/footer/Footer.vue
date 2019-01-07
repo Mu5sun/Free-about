@@ -47,7 +47,7 @@ export default {
       flex: 1
       color: $color-text-f
       .item-icon
-        bg-image('about-class')
+        bg-image('course')
         width: 20px
         flex: 0 0 20px
       .tab-link
