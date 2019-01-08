@@ -1,67 +1,46 @@
 <template>
-  <div class="season-wrapper">
-    <div class="season">
+  <ul class="season-wrapper" ref="wrapper">
+    <li class="season" v-for="item in classList" :key="item.id">
       <div class="img-box">
-        <img class="season-img" :src="seasonImg">
+        <img class="season-img" :src="item.classImg">
       </div>
       <div class="introduction">
-        <div class="season-name">{{seasonName}}</div>
+        <div class="season-name">{{item.className}}</div>
         <div class="difficult">
           难度
-          <i v-for="index in 5" :key="index" class="iconfont icon-xingxing" :class="filterGrate(index)"></i>
+          <i v-for="index in 5" :key="index" class="iconfont icon-xingxing" :class="filterGrate(index, item.difficult)"></i>
         </div>
-        <div class="teacher">老师 {{teacher}}</div>
-        <div class="term">{{day}}天</div>
+        <div class="teacher">老师 {{item.teacher}}</div>
+        <div class="term">{{item.day}}天</div>
         <div class="price">
-          <div class="class-time">{{classTime}}课时 / ￥{{money}}</div>
-          <div class="people">{{people}}人加入学习</div>
+          <div class="class-time">{{item.classTime}}课时 / ￥{{item.money}}</div>
+          <div class="people">{{item.people}}人加入学习</div>
         </div>
-        <div class="class-sign personal"></div>
+        <div class="class-sign" :class="changeType(item.type)"></div>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <script>
 export default {
   props: {
-    seasonImg: {
-      type: String,
-      default: 'http://img.duoziwang.com/2018/06/201712310484901.jpg'
-    },
-    seasonName: {
-      type: String,
-      default: '古筝培训'
-    },
-    grate: {
-      type: Number,
-      default: 3
-    },
-    teacher: {
-      type: String,
-      default: '王老师'
-    },
-    day: {
-      type: Number,
-      default: 180
-    },
-    classTime: {
-      type: Number,
-      default: 10
-    },
-    money: {
-      type: Number,
-      default: 3000
-    },
-    people: {
-      type: Number,
-      default: 100
+    classList: {
+      type: Array,
+      default: []
     }
   },
   methods: {
-    filterGrate(num) {
-      if (num <= this.grate) {
+    filterGrate(num, grate) {
+      if (num <= grate) {
         return 'active'
+      }
+    },
+    changeType(num){
+      if (num === 1) {
+        return 'personal'
+      } else if (num === 2) {
+        return 'group'
       }
     }
   }
@@ -73,9 +52,9 @@ export default {
 @import '~stylus/mixin'
 
 .season-wrapper
-  margin-top: 30px
   padding: 0 30px
   .season
+    margin-top: 30px
     display: flex
     position: relative
     width: 100%

@@ -11,12 +11,15 @@ export default {
   props: {
     school: {
       type: String,
-      default: '古筝艺术培训'
+      default: ''
     },
     address: {
       type: String,
-      default: '福州市闽侯县甘蔗镇'
+      default: ''
     }
+  },
+  created () {
+    console.log(this.school)
   }
 }
 </script>
