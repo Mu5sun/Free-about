@@ -23,6 +23,9 @@
 </template>
 
 <script>
+const PERSONAL = 1
+const GROUP = 2
+
 export default {
   props: {
     classList: {
@@ -31,15 +34,15 @@ export default {
     }
   },
   methods: {
-    filterGrate(num, grate) {
+    filterGrate (num, grate) {
       if (num <= grate) {
         return 'active'
       }
     },
-    changeType(num){
-      if (num === 1) {
+    changeType (num) {
+      if (num === PERSONAL) {
         return 'personal'
-      } else if (num === 2) {
+      } else if (num === GROUP) {
         return 'group'
       }
     }

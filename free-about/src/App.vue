@@ -1,17 +1,30 @@
 <template>
   <div id="app">
+    <m-header :title="title"></m-header>
     <router-view/>
-    <m-footer></m-footer>
+    <m-footer @changeTab="change"></m-footer>
   </div>
 </template>
 
 <script>
 import MFooter from 'page/footer/Footer'
+import MHeader from '@/common/components/header/Header'
 
 export default {
   name: 'App',
   components: {
-    MFooter
+    MFooter,
+    MHeader
+  },
+  data () {
+    return {
+      title: ''
+    }
+  },
+  methods: {
+    change (value) {
+      this.title = value
+    }
   }
 }
 </script>

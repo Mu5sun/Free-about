@@ -1,24 +1,24 @@
 <template>
   <div class="footer">
-    <router-link tag='div' class="tab-item" to='/Course'>
+    <router-link @click.native="changeTab(0)" tag='div' class="tab-item" to='/Course'>
       <div class="item-icon">
         <i class="iconfont icon-icon"></i>
       </div>
-      <div class="tab-link">课程</div>
+      <span class="tab-link">课程</span>
     </router-link>
-    <router-link tag='div' class="tab-item" to='/About-class'>
+    <router-link @click.native="changeTab(1)" tag='div' class="tab-item" to='/About-class'>
       <div class="item-icon">
         <i class="iconfont icon-kecheng"></i>
       </div>
       <span class="tab-link">约课</span>
     </router-link>
-    <router-link tag='div' class="tab-item" to='/Purchased'>
+    <router-link @click.native="changeTab(2)" tag='div' class="tab-item" to='/Purchased'>
       <div class="item-icon">
         <i class="iconfont icon-yigou"></i>
       </div>
       <span class="tab-link">已购</span>
     </router-link>
-    <router-link tag='div' class="tab-item" to='/Mine'>
+    <router-link @click.native="changeTab(3)" tag='div' class="tab-item" to='/Mine'>
       <div class="item-icon">
         <i class="iconfont icon-wode"></i>
       </div>
@@ -29,7 +29,16 @@
 
 <script>
 export default {
-  
+  data () {
+    return {
+      tab: ['课程', '约课', '已购', '我的']
+    }
+  },
+  methods: {
+    changeTab (num) {
+      this.$emit('changeTab', this.tab[num])
+    }
+  }
 }
 </script>
 

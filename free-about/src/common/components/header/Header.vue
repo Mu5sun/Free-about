@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="more" v-if="back">
-      <i class="back-icon"></i>
+      <i class="iconfont icon-back"></i>
     </div>
     <div class="text">{{title}}</div>
     <div class="more" v-if="right"></div>
@@ -32,6 +32,9 @@ export default {
 @import "~stylus/variable"
 
 .header
+  position: fixed
+  top: 0
+  z-index: 99
   display: flex
   width: 100%
   height: 88px
@@ -42,7 +45,7 @@ export default {
     width: 70px
     height: 100%
     background: #ddd
-    .back-icon
+    .iconfont
       diaplay: inline-block
       width: 18px
       height: 30px
