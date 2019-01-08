@@ -34,23 +34,23 @@ export default {
 .header
   display: flex
   width: 100%
-  height: 44px
+  height: 88px
   background-color: $color-text
-  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1)
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3)
   .more
     box-sizing: border-box
-    width: 35px
+    width: 70px
     height: 100%
     background: #ddd
     .back-icon
       diaplay: inline-block
-      width: 9px
-      height: 15px
-      margin-left: 15px
+      width: 18px
+      height: 30px
+      margin-left: 30px
   .text
     flex: 1
     text-align: center
-    line-height: 44px
+    line-height: 88px
     font-size: $font-size-36
     color: $color-text-b
 </style>

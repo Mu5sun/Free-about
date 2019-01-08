@@ -1,19 +1,27 @@
 <template>
   <div class="footer">
     <router-link tag='div' class="tab-item" to='/Course'>
-      <div class="item-icon"></div>
+      <div class="item-icon">
+        <i class="iconfont icon-icon"></i>
+      </div>
       <div class="tab-link">课程</div>
     </router-link>
     <router-link tag='div' class="tab-item" to='/About-class'>
-      <div class="item-icon"></div>
+      <div class="item-icon">
+        <i class="iconfont icon-kecheng"></i>
+      </div>
       <span class="tab-link">约课</span>
     </router-link>
     <router-link tag='div' class="tab-item" to='/Purchased'>
-      <div class="item-icon"></div>
+      <div class="item-icon">
+        <i class="iconfont icon-yigou"></i>
+      </div>
       <span class="tab-link">已购</span>
     </router-link>
     <router-link tag='div' class="tab-item" to='/Mine'>
-      <div class="item-icon"></div>
+      <div class="item-icon">
+        <i class="iconfont icon-wode"></i>
+      </div>
       <span class="tab-link">我的</span>
     </router-link>
   </div>
@@ -34,11 +42,11 @@ export default {
     position: fixed
     bottom: 0
     width: 100%
-    height: 52px
+    height: 104px
     font-size: $font-size-18
     background-color: $color-text
     border-top: 1px solid #999
-    padding: 7px 0 5px 0
+    padding: 14px 0 10px 0
     box-sizing: border-box
     .tab-item
       display: flex
@@ -47,10 +55,13 @@ export default {
       flex: 1
       color: $color-text-f
       .item-icon
-        bg-image('course')
-        width: 20px
-        flex: 0 0 20px
+        width: 40px
+        flex: 0 0 40px
+        .iconfont
+          font-size: $font-size-40
       .tab-link
         text-align: center
-        margin-top: 5px
+        margin-top: 10px
+      &.router-link-active
+        color: $color-theme
 </style>
