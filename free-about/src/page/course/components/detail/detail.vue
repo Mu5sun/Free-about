@@ -7,6 +7,7 @@
           <detail-content :detail="detail"></detail-content>
         </scroll>
       </div>
+      <detail-footer></detail-footer>
     </div>
   </transition>
 </template>
@@ -16,6 +17,7 @@ import {mapGetters} from 'vuex'
 import axios from 'axios'
 import MHeader from '@/common/components/header/Header'
 import DetailContent from '@/page/course/components/detail/detail-content'
+import DetailFooter from '@/page/course/components/detail/detail-footer'
 import Scroll from '@/common/components/scroll/scroll'
 
 
@@ -52,7 +54,8 @@ export default {
   components: {
     MHeader,
     DetailContent,
-    Scroll
+    Scroll,
+    DetailFooter
   }
 }
 </script>
