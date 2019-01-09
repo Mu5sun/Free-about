@@ -4,6 +4,7 @@ import Course from '@/page/course/Course'
 import AboutClass from '@/page/about-class/About-class'
 import Purchased from '@/page/purchased/Purchased'
 import Mine from '@/page/mine/Mine'
+import Detail from '@/page/course/components/detail/Detail'
 
 Vue.use(Router)
 
@@ -15,7 +16,13 @@ export default new Router({
     },
     {
       path: '/Course',
-      component: Course
+      component: Course,
+      children: [
+        {
+          path: ':id',
+          component: Detail
+        }
+      ]
     },
     {
       path: '/About-class',

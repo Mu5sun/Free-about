@@ -18,7 +18,7 @@ export default {
   },
   data () {
     return {
-      title: ''
+      title: '课程'
     }
   },
   methods: {

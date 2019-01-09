@@ -1,6 +1,6 @@
 <template>
   <ul class="season-wrapper" ref="wrapper">
-    <li class="season" v-for="item in classList" :key="item.id">
+    <li @click="selectDetail(item.id)" class="season" v-for="item in classList" :key="item.id">
       <div class="img-box">
         <img class="season-img" :src="item.classImg">
       </div>
@@ -45,6 +45,9 @@ export default {
       } else if (num === GROUP) {
         return 'group'
       }
+    },
+    selectDetail (id) {
+      this.$emit("selectDetail", id)
     }
   }
 }
