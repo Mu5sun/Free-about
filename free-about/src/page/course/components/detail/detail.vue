@@ -1,13 +1,14 @@
 <template>
   <transition name="slide">
     <div class="detail">
-      <m-header :title="detail.className"></m-header>
+      <m-header :title="detail.className" @beBack="beBack" :back="true"></m-header>
       <div class="wrapper">
         <scroll :data="detail.detailList" class="scroll-detail">
           <detail-content :detail="detail"></detail-content>
         </scroll>
       </div>
-      <detail-footer></detail-footer>
+      <detail-footer @select="selectItem"></detail-footer>
+      <confirm ref="confirm" :confirmText="text" confirmBtnText="确认报名"></confirm>
     </div>
   </transition>
 </template>
@@ -19,19 +20,31 @@ import MHeader from '@/common/components/header/Header'
 import DetailContent from '@/page/course/components/detail/detail-content'
 import DetailFooter from '@/page/course/components/detail/detail-footer'
 import Scroll from '@/common/components/scroll/scroll'
+import Confirm from '@/common/components/confirm/confirm'
 
 
 export default {
   name: "Detail",
   data () {
     return {
-      detail: {}
+      detail: {},
+      text: '因支付业务还未完善的原因，确认报名后，请联系老师的微信进行报名缴费事宜',
+      number: 'weixinhaoma123'
     }
   },
   created () {
     this._getDetailData()
   },
   methods: {
+    beBack () {
+      this.$router.push('/Course')
+    },
+    selectItem () {
+      this.$refs.confirm.show()
+    },
+    hide () {
+      this.$refs.confirm.hide()
+    },
     _getDetailData () {
       if (!this.classId) {
         this.$router.push('/Course')
@@ -55,7 +68,8 @@ export default {
     MHeader,
     DetailContent,
     Scroll,
-    DetailFooter
+    DetailFooter,
+    Confirm
   }
 }
 </script>

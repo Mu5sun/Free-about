@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <div class="more" v-if="back">
-      <i class="iconfont icon-back"></i>
+    <div class="more" v-if="back" @click="beBack">
+      <i class="iconfont icon-fanhui"></i>
     </div>
     <div class="text">{{title}}</div>
     <div class="more" v-if="right"></div>
@@ -24,6 +24,11 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  methods: {
+    beBack () {
+      this.$emit('beBack')
+    }
   }
 }
 </script>
@@ -41,15 +46,13 @@ export default {
   background-color: $color-text
   border-bottom: 1px solid rgba(0, 0, 0, 0.3)
   .more
-    box-sizing: border-box
     width: 70px
-    height: 100%
-    background: #ddd
-    .iconfont
-      diaplay: inline-block
-      width: 18px
-      height: 30px
-      margin-left: 30px
+    height: 88px
+    text-align: center
+    line-height: 88px
+    .icon-fanhui
+      font-size: $font-size-30
+      color: $color-text-b
   .text
     flex: 1
     text-align: center

@@ -2,9 +2,6 @@ import Mock from 'mockjs'
 import courseData from '../data/course.json'
 import detailData from '../data/detail.json'
 
-let id = detailData.data.id
-console.log(id)
-
 Mock.mock('/season/course', {
   code: 0,
   codeMsg: '成功',

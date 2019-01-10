@@ -54,7 +54,7 @@ export default {
     height: 104px
     font-size: $font-size-18
     background-color: $color-text
-    border-top: 1px solid #999
+    border-top: 1px solid rgba(0, 0, 0, 0.3)
     padding: 14px 0 10px 0
     box-sizing: border-box
     .tab-item
