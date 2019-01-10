@@ -7,7 +7,7 @@
           <detail-content :detail="detail"></detail-content>
         </scroll>
       </div>
-      <detail-footer @select="selectItem"></detail-footer>
+      <detail-footer @select="selectItem" :money="detail.money" :is-buy="detail.isBuy"></detail-footer>
       <confirm ref="confirm" :confirmText="text" confirmBtnText="确认报名"></confirm>
     </div>
   </transition>
@@ -22,9 +22,7 @@ import DetailFooter from '@/page/course/components/detail/detail-footer'
 import Scroll from '@/common/components/scroll/scroll'
 import Confirm from '@/common/components/confirm/confirm'
 
-
 export default {
-  name: "Detail",
   data () {
     return {
       detail: {},

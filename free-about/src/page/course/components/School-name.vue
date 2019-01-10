@@ -7,7 +7,6 @@
 
 <script>
 export default {
-  name: "School-name",
   props: {
     school: {
       type: String,

@@ -5,7 +5,7 @@
         <div class="confirm-content">
           <p class="prompt">提示</p>
           <p class="text">{{confirmText}}</p>
-          <div class="wechat">
+          <div class="wechat" v-show="!showWechat">
             <p class="weixin">微信号</p>
             <p class="number">{{num}}</p>
           </div>
@@ -37,6 +37,10 @@ export default {
     cancelBtnText: {
       type: String,
       default: '取消'
+    },
+    showWechat: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -56,7 +60,7 @@ export default {
       this.$emit('cancel')
     },
     confirm () {
-      this.show()
+      this.hide()
       this.$emit('confirm')
     }
   }

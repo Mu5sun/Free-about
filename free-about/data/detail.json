@@ -254,7 +254,7 @@
       "money": 4000,
       "people": 100,
       "type": 1,
-      "isBuy": false,
+      "isBuy": true,
       "detailList": [
         {
           "title": "课程简介",

@@ -47,7 +47,7 @@ export default {
       }
     },
     selectDetail (id) {
-      this.$emit("selectDetail", id)
+      this.$emit('selectDetail', id)
     }
   }
 }

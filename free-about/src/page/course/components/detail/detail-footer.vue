@@ -10,8 +10,11 @@
       <div class="line"></div>
       <div class="advisory">免费咨询</div>
     </div>
-    <div class="right" @click="selectItem">
+    <div v-if="!isBuy" class="right" @click="selectItem">
       <div class="button">报名：￥{{money}}</div>
+    </div>
+    <div v-else class="right">
+      <div class="button buy">已报名</div>
     </div>
   </div>
 </template>
@@ -22,6 +25,10 @@ export default {
     money: {
       type: Number,
       default: 3000
+    },
+    isBuy: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -80,4 +87,6 @@ export default {
       color: $color-text
       border-radius: 35px
       margin: 17px 18px 0 0
+      &.buy
+        background-color: #cccccc
 </style>

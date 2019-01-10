@@ -47,7 +47,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     detail: {
@@ -147,6 +146,4 @@ export default {
           line-height: 38px
     .notice
       margin-top: 20px
-
 </style>
-
