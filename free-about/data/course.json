@@ -3,6 +3,7 @@
   "data": {
     "venueName": "古筝艺术培训",
     "venueAddress": "福州市闽侯县甘蔗镇",
+    "hasClass": false,
     "classList": [
       {
         "id": 1,

@@ -3,7 +3,7 @@
     <scroll class="course-scroll" ref="courseScroll" :data="classList">
       <div class="course-wrapper">
         <school-name :school="venueName" :address="venueAddress"></school-name>
-        <season :classList="classList" @selectDetail="selectDetail"></season>
+        <season :classList="classList" @selectDetail="selectDetail" :hasClass="hasClass"></season>
       </div>
     </scroll>
     <router-view></router-view>
@@ -27,6 +27,7 @@ export default {
     return {
       venueAddress: '',
       venueName: '',
+      hasClass: false,
       classList: []
     }
   },
@@ -46,6 +47,7 @@ export default {
         if (data.code === 0) {
           this.venueAddress = data.data.venueAddress
           this.venueName = data.data.venueName
+          this.hasClass = data.data.hasClass
           this.classList = data.data.classList
         }
       })

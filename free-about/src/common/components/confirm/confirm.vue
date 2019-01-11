@@ -5,7 +5,7 @@
         <div class="confirm-content">
           <p class="prompt">提示</p>
           <p class="text">{{confirmText}}</p>
-          <div class="wechat" v-show="!showWechat">
+          <div class="wechat" v-if="showWechat">
             <p class="weixin">微信号</p>
             <p class="number">{{num}}</p>
           </div>
@@ -40,7 +40,7 @@ export default {
     },
     showWechat: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   data () {

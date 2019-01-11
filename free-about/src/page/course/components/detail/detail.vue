@@ -8,7 +8,7 @@
         </scroll>
       </div>
       <detail-footer @select="selectItem" :money="detail.money" :is-buy="detail.isBuy"></detail-footer>
-      <confirm ref="confirm" :confirmText="text" confirmBtnText="确认报名"></confirm>
+      <confirm ref="confirm" :confirmText="text" confirmBtnText="确认报名" :confirm="singUp"></confirm>
     </div>
   </transition>
 </template>
@@ -42,6 +42,8 @@ export default {
     },
     hide () {
       this.$refs.confirm.hide()
+    },
+    singUp () {
     },
     _getDetailData () {
       if (!this.classId) {
