@@ -19,11 +19,28 @@
           <div class="price">
             <div class="class-time">{{item.classTime}}课时 / ￥{{item.money}}</div>
             <div v-if="!hasClass" class="people">{{item.people}}人加入学习</div>
-            <div
-              v-else
-              class="button"
-              @click="select(isReser(item.isReser, item.classPeople, item.currentPeople))"
-            >{{isReser(item.isReser, item.classPeople, item.currentPeople)}}</div>
+            <div v-else>
+              <div
+                v-if="item.isReser"
+                class="button"
+                @click="selectCancel(item)"
+              >取消预约</div>
+              <div
+                v-else-if="!item.isReser && item.currentPeople < item.classPeople"
+                class="button"
+                @click="selectReserve(item)"
+              >预约</div>
+              <div
+                v-else-if="!item.isReser && item.currentPeople >= item.classPeople"
+                class="button"
+                @click="selectQueue(item)"
+              >排队</div>
+              <div
+                v-else-if="queue && item.currentPeople >= item.classPeople"
+                class="button"
+                @click="selectCanleQueue(item)"
+              >取消排队</div>
+            </div>
           </div>
           <div class="class-sign" :class="changeType(item.type)"></div>
         </div>
@@ -61,6 +78,10 @@ export default {
     hasClass: {
       type: Boolean,
       default: false
+    },
+    queue: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -79,21 +100,17 @@ export default {
     selectDetail (id) {
       this.$emit('selectDetail', id)
     },
-    select (value) {
-      this.$emit('selectType', value)
+    selectCancel (item) {
+      this.$emit('selectCancel', item)
     },
-    isReser (isReser, num, count) {
-      if (isReser) {
-        return "取消预约"
-      } else {
-        if (count >= num) {
-          return "排队"
-        } else {
-          return "预约"
-        }
-        'rotate(' + num + 'deg)'
-        `rotate(${num}deg)`
-      }
+    selectReserve (item) {
+      this.$emit('selectReserve', item)
+    },
+    selectQueue (item) {
+      this.$emit('selectQueue', item)
+    },
+    selectCanleQueue (item) {
+      this.$emit('selectCanleQueue', item)
     }
   }
 }
@@ -114,7 +131,7 @@ export default {
       background-color: $color-text
       box-shadow: 0px 10px 30px 0px rgba(4,0,0,0.05)
     .content-box
-      display: flex 
+      display: flex
       .img-box
         display:flex
         align-items:center
@@ -228,5 +245,5 @@ export default {
           .icon-diandiandian
             font-size: 54px
 
-      
+
 </style>

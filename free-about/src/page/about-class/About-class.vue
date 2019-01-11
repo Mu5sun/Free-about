@@ -1,12 +1,25 @@
 <template>
   <div class="about-class">
-    <week></week>
+    <week @changeDate="changeDate"></week>
     <div class="wrapper">
       <scroll class="scroll" :data="classList">
-        <season :classList="classList" :hasClass="hasClass" @selectType="selectType"></season>
+        <season
+          :classList="classList"
+          :hasClass="hasClass"
+          @selectCancel="selectCancel"
+          @selectReserve="selectReserve"
+          @selectQueue="selectQueue"
+          @selectCancelQueue="selectCancelQueue"
+        ></season>
       </scroll>
     </div>
-    <confirm ref="confirm" :confirmText="text()" :confirmBtnText="btnText()" :showWechat="false"></confirm>
+    <confirm
+      ref="confirm"
+      :confirmText="text('text')"
+      :confirmBtnText="text('btnText')"
+      :showWechat="false"
+      @confirm="confirm"
+    ></confirm>
   </div>
 </template>
 
@@ -32,38 +45,61 @@ export default {
           btnText: '确认预约'
         },
         {
-          text: '当前预约人数已满，点击排队后，有空位时会按排队顺序往前填补空位',
+          text: '当前预约人数已满，点击排队后，有空位时会按排队顺序往前填补空位。',
           btnText: '确认排队'
         },
+        {
+          text: '取消排队后，当有空位出现时将不会有机会填补该空位。',
+          btnText: '取消排队'
+        },
       ],
-      type: ''
+      type: '',
+      queue: false,
+      isClick: false
     }
   },
   created () {
     this._getClassData()
   },
   methods: {
-    selectType (value) {
-      this.$refs.confirm.show()
-      this.type = value
+    selectCancel (item) {
+      this.type = '取消预约'
+      this._showConfirm()
+      if (this.isClick) {
+        item.isReser = false
+      }
     },
-    text () {
+    selectReserve (item) {
+      this.type = '预约'
+      this._showConfirm()
+    },
+    selectQueue (item) {
+      this.type = '排队'
+      this._showConfirm()
+    },
+    selectCancelQueue (item) {
+      this.type = '取消排队'
+      this._showConfirm()
+    },
+    text (value) {
       if (this.type === '预约') {
-        return this.confirmText[1].text
+        return this.confirmText[1][value]
       } else if (this.type === '取消预约') {
-        return this.confirmText[0].text
+        return this.confirmText[0][value]
       } else if (this.type === '排队') {
-        return this.confirmText[2].text
+        return this.confirmText[2][value]
+      } else if (this.type === '取消排队') {
+        return this.confirmText[3][value]
       }
     },
-    btnText () {
-       if (this.type === '预约') {
-        return this.confirmText[1].btnText
-      } else if (this.type === '取消预约') {
-        return this.confirmText[0].btnText
-      } else if (this.type === '排队') {
-        return this.confirmText[2].btnText
-      }
+    changeDate (value) {
+      console.log(value)
+    },
+    confirm () {
+      this.isClick = true
+    },
+    _showConfirm () {
+      this.$refs.confirm.show()
     },
     _getClassData () {
       axios.get('/season/reservation').then(res => {

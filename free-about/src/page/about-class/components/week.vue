@@ -2,7 +2,13 @@
   <div class="week">
     <div class="time-bar">
       <ul class="wrapper">
-        <li class="point" v-for="(item, index) in weekArray" :key="index" :class="{active: isToday(index)}">
+        <li
+          class="point"
+          v-for="(item, index) in weekArray"
+          :key="index"
+          :class="isToday(index)"
+          @click="changeDate(day(index), index)"
+        >
           <p class="date">{{day(index)}}</p>
           <p v-show="isToday(index)" class="weekday">周{{weekday}}</p>
         </li>
@@ -19,8 +25,12 @@ const LEAP = 'leap' //闰年
 export default {
   data () {
     return {
-      weekArray: ['日', '一', '二', '三', '四', '五', '六']
+      weekArray: ['日', '一', '二', '三', '四', '五', '六'],
+      today: -1
     }
+  },
+  created () {
+    this._today()
   },
   methods: {
     day (index) {
@@ -67,12 +77,15 @@ export default {
       return this._date(month, day)
     },
     isToday (index) {
-      let today = new Date().getDay()
-      if (today === index) {
-        return true
+      if (this.today === index) {
+        return 'active'
       } else {
-        return false
+        return ''
       }
+    },
+    changeDate (value, index) {
+      this.$emit('changeDate', value)
+      this.today = index
     },
     _paddingZero (num) {
       if (num < 10) {
@@ -80,6 +93,9 @@ export default {
       } else {
         return num
       }
+    },
+    _today () {
+      this.today = new Date().getDay()
     },
     _date (month, day) {
       return `${this._paddingZero(month)}.${this._paddingZero(day)}`
@@ -113,8 +129,7 @@ export default {
   },
   computed: {
     weekday () {
-      let weekday = new Date().getDay()
-      return this.weekArray[weekday]
+      return this.weekArray[this.today]
     }
   }
 }
